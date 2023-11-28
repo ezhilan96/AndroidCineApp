@@ -97,12 +97,16 @@ val Typography = Typography(
 )
 
 data class TextStyles(
-    val title: TextStyle = TextStyle(
+    val userName: TextStyle = TextStyle(
+        fontFamily = FontFamily(Font(R.font.poppins_regular)),
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp
+    ),
+    val userNameLabel: TextStyle = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Medium,
-        fontStyle = FontStyle.Italic,
+        fontWeight = FontWeight.Thin,
         fontSize = 12.sp
-    )
+    ),
 )
 
 val LocalTextStyle = compositionLocalOf { TextStyles() }

@@ -38,12 +38,10 @@ fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel(),
     navigateToSignUp: () -> Unit,
     navigateToForgot: () -> Unit,
-    navigateToHome: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(uiState) {
         when {
-            uiState.navigateToHome -> navigateToHome()
             uiState.navigateToSignup -> navigateToSignUp()
             uiState.navigateToForgot -> navigateToForgot()
         }

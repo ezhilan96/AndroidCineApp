@@ -16,7 +16,6 @@ data class LoginUiState(
     val isLoading: Boolean = false,
     val userName: String = "",
     val error: String = "",
-    val navigateToHome: Boolean = false,
     val navigateToSignup: Boolean = false,
     val navigateToForgot: Boolean = false,
 )
@@ -25,10 +24,10 @@ sealed class LoginUiEvent {
 
     data class OnUserNameChange(val name: String) : LoginUiEvent()
 
-    object OnForgotPasswordClicked : LoginUiEvent()
+    data object OnForgotPasswordClicked : LoginUiEvent()
 
-    object OnSignUpClicked : LoginUiEvent()
-    object OnSubmit : LoginUiEvent()
+    data object OnSignUpClicked : LoginUiEvent()
+    data object OnSubmit : LoginUiEvent()
 }
 
 @HiltViewModel
@@ -62,29 +61,16 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         viewModelScope.launch {
             loginUseCase(_loginUiState.value.userName).collect { response ->
                 when (response) {
-                    is NetworkResponse.Success -> {
-                        _loginUiState.update { currentState ->
-                            currentState.copy(
-                                isLoading = false,
-                                navigateToHome = true,
-                            )
-                        }
+                    is NetworkResponse.Success -> _loginUiState.update { currentState ->
+                        currentState.copy(isLoading = false)
                     }
 
-                    is NetworkResponse.Error -> {
-                        _loginUiState.update { currentState ->
-                            currentState.copy(
-                                error = response.message
-                            )
-                        }
+                    is NetworkResponse.Error -> _loginUiState.update { currentState ->
+                        currentState.copy(error = response.message)
                     }
 
-                    is NetworkResponse.Exception -> {
-                        _loginUiState.update { currentState ->
-                            currentState.copy(
-                                error = response.e.message ?: Error().message
-                            )
-                        }
+                    is NetworkResponse.Exception -> _loginUiState.update { currentState ->
+                        currentState.copy(error = response.e.message ?: Error().message)
                     }
                 }
             }
@@ -94,7 +80,6 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
     fun onScreenFinish() {
         _loginUiState.update { currentState ->
             currentState.copy(
-                navigateToHome = false,
                 navigateToSignup = false,
                 navigateToForgot = false,
             )

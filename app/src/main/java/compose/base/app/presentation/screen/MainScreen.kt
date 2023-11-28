@@ -65,7 +65,6 @@ fun MainScreen(
                     composable(route = AuthRoutes.LoginScreen.route) {
                         LoginRoute(
                             modifier = modifier,
-                            navigateToHome = navigateToHome,
                             navigateToSignUp = {
                                 navController.navigate(AuthRoutes.SignUpScreen.route)
                             },

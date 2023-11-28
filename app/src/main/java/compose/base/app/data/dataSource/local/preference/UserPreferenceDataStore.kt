@@ -14,26 +14,26 @@ import javax.inject.Singleton
 class UserPreferencesDataStore @Inject constructor(
     private val userPreferencesDataStore: DataStore<Preferences>
 ) {
-    private val _tokenKey = stringPreferencesKey("token")
+    private val _userNameKey = stringPreferencesKey("username")
 
     val isLoggedIn: Flow<Boolean> = userPreferencesDataStore.data.map {
-        !it[_tokenKey].isNullOrEmpty()
+        !it[_userNameKey].isNullOrEmpty()
     }
 
-    suspend fun login(token: String) {
+    suspend fun login(userName: String) {
         userPreferencesDataStore.edit {
-            it[_tokenKey] = token
+            it[_userNameKey] = userName
         }
     }
 
-    suspend fun putUserDetails(token: String) {
+    suspend fun putUserDetails(userName: String) {
         userPreferencesDataStore.edit {
-            it[_tokenKey] = token
+            it[_userNameKey] = userName
         }
     }
 
     val userDetails: Flow<String?> = userPreferencesDataStore.data.map {
-        it[_tokenKey]
+        it[_userNameKey]
     }
 
     fun logout() {

@@ -22,7 +22,7 @@ sealed class ForgotUiEvent {
 
     data class OnConfirmPasswordChanged(val password: String) : ForgotUiEvent()
 
-    object OnSubmit : ForgotUiEvent()
+    data object OnSubmit : ForgotUiEvent()
 }
 
 @HiltViewModel

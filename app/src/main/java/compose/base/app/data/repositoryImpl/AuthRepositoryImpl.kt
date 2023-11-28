@@ -30,6 +30,8 @@ class AuthRepositoryImpl @Inject constructor(
         })
     }.flowOn(ioDispatcher)
 
-    override suspend fun saveLoginInfo(token: String) = dataStore.putUserDetails(token)
+    override suspend fun saveLoginInfo(userName: String) = dataStore.putUserDetails(userName)
+    override suspend fun getUserInfo()  =  dataStore.userDetails
+
     override fun logout() = dataStore.logout()
 }

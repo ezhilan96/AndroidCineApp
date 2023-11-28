@@ -19,7 +19,7 @@ sealed class SignupUiEvent {
 
     data class OnUserNameChange(val name: String) : SignupUiEvent()
 
-    object OnSubmit : SignupUiEvent()
+    data object OnSubmit : SignupUiEvent()
 }
 
 @HiltViewModel
