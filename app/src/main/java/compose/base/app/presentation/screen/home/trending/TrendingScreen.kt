@@ -1,4 +1,4 @@
-package compose.base.app.presentation.screen.home.trending
+package compose.base.app.presentation.screen.home.favorite
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -15,16 +15,16 @@ import compose.base.app.presentation.ui.theme.CineTheme
 
 @ExperimentalMaterial3Api
 @Composable
-fun TrendingRoute(
+fun FavoriteRoute(
     modifier: Modifier = Modifier,
-    viewModel: TrendingViewModel = hiltViewModel(),
+    viewModel: FavoriteViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(uiState.navigateToHome) {
 
     }
     if (rememberLifecycleEvent() == Lifecycle.Event.ON_STOP) viewModel.onScreenFinish()
-    TrendingScreen(
+    FavoriteScreen(
         modifier = modifier,
         uiState = uiState,
         uiEvent = viewModel::handleEvent,
@@ -33,10 +33,10 @@ fun TrendingRoute(
 
 @ExperimentalMaterial3Api
 @Composable
-fun TrendingScreen(
+fun FavoriteScreen(
     modifier: Modifier = Modifier,
-    uiState: TrendingUiState,
-    uiEvent: (TrendingUiEvent) -> Unit,
+    uiState: FavoriteUiState,
+    uiEvent: (FavoriteUiEvent) -> Unit,
 ) {
     Scaffold {
         it
@@ -47,8 +47,8 @@ fun TrendingScreen(
 @ExperimentalMaterial3Api
 @Preview
 @Composable
-fun TrendingScreenPreview() {
+fun FavoriteScreenPreview() {
     CineTheme {
-        TrendingScreen(uiState = TrendingUiState(), uiEvent = {})
+        FavoriteScreen(uiState = FavoriteUiState(), uiEvent = {})
     }
 }

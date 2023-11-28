@@ -1,4 +1,4 @@
-package compose.base.app.presentation.screen.home.discover
+package compose.base.app.presentation.screen.home.trending
 
 import androidx.lifecycle.ViewModel
 import compose.base.app.domain.usecase.LoginUseCase
@@ -8,35 +8,35 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-data class DiscoverUiState(
+data class TrendingUiState(
     val isLoading: Boolean = false,
     val userName: String = "",
     val error: String = "",
     val navigateToHome: Boolean = false,
 )
 
-sealed class DiscoverUiEvent {
+sealed class TrendingUiEvent {
 
-    data class OnUserNameChange(val name: String) : DiscoverUiEvent()
-    object OnSubmit : DiscoverUiEvent()
+    data class OnUserNameChange(val name: String) : TrendingUiEvent()
+    object OnSubmit : TrendingUiEvent()
 }
 
 @HiltViewModel
-class DiscoverViewModel @Inject constructor(private val discoverUseCase: LoginUseCase) :
+class TrendingViewModel @Inject constructor(private val trendingUseCase: LoginUseCase) :
     ViewModel() {
 
-    private var _discoverUiState = MutableStateFlow(DiscoverUiState())
-    val uiState: StateFlow<DiscoverUiState>
-        get() = _discoverUiState
+    private var _trendingUiState = MutableStateFlow(TrendingUiState())
+    val uiState: StateFlow<TrendingUiState>
+        get() = _trendingUiState
 
-    fun handleEvent(event: DiscoverUiEvent) {
-        if (!_discoverUiState.value.isLoading) {
+    fun handleEvent(event: TrendingUiEvent) {
+        if (!_trendingUiState.value.isLoading) {
             when (event) {
-                is DiscoverUiEvent.OnUserNameChange -> _discoverUiState.update { currentState ->
+                is TrendingUiEvent.OnUserNameChange -> _trendingUiState.update { currentState ->
                     currentState.copy(userName = event.name)
                 }
 
-                DiscoverUiEvent.OnSubmit -> _discoverUiState.update { currentState ->
+                TrendingUiEvent.OnSubmit -> _trendingUiState.update { currentState ->
                     currentState.copy(navigateToHome = true)
                 }
             }
@@ -44,7 +44,7 @@ class DiscoverViewModel @Inject constructor(private val discoverUseCase: LoginUs
     }
 
     fun onScreenFinish() {
-        _discoverUiState.update { currentState ->
+        _trendingUiState.update { currentState ->
             currentState.copy(navigateToHome = false)
         }
     }

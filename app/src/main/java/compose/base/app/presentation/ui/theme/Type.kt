@@ -8,7 +8,6 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import compose.base.app.R
@@ -18,92 +17,64 @@ val defaultTypography = Typography()
 val Typography = Typography(
 
     displayLarge = defaultTypography.displayLarge.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     displayMedium = defaultTypography.displayMedium.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     displaySmall = defaultTypography.displaySmall.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontSize = 10.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
 
     headlineLarge = defaultTypography.headlineLarge.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     headlineMedium = defaultTypography.headlineMedium.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     headlineSmall = defaultTypography.headlineSmall.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
 
     titleLarge = defaultTypography.titleLarge.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     titleMedium = defaultTypography.titleMedium.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     titleSmall = defaultTypography.titleSmall.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
 
     bodyLarge = defaultTypography.bodyLarge.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     bodyMedium = defaultTypography.bodyMedium.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     bodySmall = defaultTypography.bodySmall.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
 
     labelLarge = defaultTypography.labelLarge.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     labelMedium = defaultTypography.labelMedium.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
     labelSmall = defaultTypography.labelSmall.copy(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
+        fontFamily = FontFamily(Font(R.font.montserrat_regular))
     ),
 )
 
 data class TextStyles(
     val userName: TextStyle = TextStyle(
-        fontFamily = FontFamily(Font(R.font.poppins_regular)),
+        fontFamily = FontFamily(Font(R.font.montserrat_regular)),
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp
     ),
     val userNameLabel: TextStyle = TextStyle(
-        fontFamily = FontFamily(Font(R.font.roboto_regular)),
+        fontFamily = FontFamily(Font(R.font.montserrat_regular)),
         fontWeight = FontWeight.Thin,
         fontSize = 12.sp
     ),

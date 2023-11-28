@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Category
-import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Category
-import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -18,7 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,9 +24,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import compose.base.app.R
 import compose.base.app.presentation.screen.home.account.AccountRoute
-import compose.base.app.presentation.screen.home.discover.DiscoverRoute
 import compose.base.app.presentation.screen.home.trending.TrendingRoute
+import compose.base.app.presentation.screen.home.favorite.FavoriteRoute
 
 @ExperimentalMaterial3Api
 @Composable
@@ -44,13 +43,13 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 .padding(it)
                 .fillMaxSize(),
             navController = navController,
-            startDestination = HomeRoutes.DiscoverScreen.route,
+            startDestination = HomeRoutes.TrendingScreen.route,
         ) {
-            composable(route = HomeRoutes.DiscoverScreen.route) {
-                DiscoverRoute(modifier = modifier)
-            }
             composable(route = HomeRoutes.TrendingScreen.route) {
                 TrendingRoute(modifier = modifier)
+            }
+            composable(route = HomeRoutes.FavoriteScreen.route) {
+                FavoriteRoute(modifier = modifier)
             }
             composable(route = HomeRoutes.AccountScreen.route) {
                 AccountRoute(modifier = modifier)
@@ -69,8 +68,10 @@ fun MainNavBar(navController: NavController) {
                 label = { Text(text = navigationItems[index].label) },
                 icon = {
                     Icon(
-                        if (currentRoute == navigationItem.route) navigationItem.selectedIcon
-                        else navigationItem.unSelectedIcon,
+                        painterResource(
+                            if (currentRoute == navigationItem.route) navigationItem.selectedIcon
+                            else navigationItem.unSelectedIcon
+                        ),
                         contentDescription = null,
                     )
                 },
@@ -93,35 +94,35 @@ fun MainNavBar(navController: NavController) {
 sealed class HomeRoutes(
     val label: String,
     val route: String,
-    val selectedIcon: ImageVector,
-    val unSelectedIcon: ImageVector,
+    val selectedIcon: Int,
+    val unSelectedIcon: Int,
 ) {
-
-    data object DiscoverScreen : HomeRoutes(
-        label = "Discover",
-        route = "discover",
-        selectedIcon = Icons.Filled.Category,
-        unSelectedIcon = Icons.Outlined.Category,
-    )
 
     data object TrendingScreen : HomeRoutes(
         label = "Trending",
         route = "trending",
-        selectedIcon = Icons.Filled.TrendingUp,
-        unSelectedIcon = Icons.Outlined.TrendingUp,
+        selectedIcon = R.drawable.ic_trending_filled,
+        unSelectedIcon = R.drawable.ic_trending_outline,
+    )
+
+    data object FavoriteScreen : HomeRoutes(
+        label = "Favorite",
+        route = "favorite",
+        selectedIcon = R.drawable.ic_heart_filled,
+        unSelectedIcon = R.drawable.ic_heart_outline,
     )
 
     data object AccountScreen : HomeRoutes(
         label = "Account",
         route = "account",
-        selectedIcon = Icons.Filled.AccountCircle,
-        unSelectedIcon = Icons.Outlined.AccountCircle,
+        selectedIcon = R.drawable.ic_user_filled,
+        unSelectedIcon = R.drawable.ic_user_outline,
     )
 }
 
 val navigationItems = listOf(
-    HomeRoutes.DiscoverScreen,
     HomeRoutes.TrendingScreen,
+    HomeRoutes.FavoriteScreen,
     HomeRoutes.AccountScreen,
 )
 

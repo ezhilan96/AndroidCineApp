@@ -1,4 +1,4 @@
-package compose.base.app.presentation.screen.home.trending
+package compose.base.app.presentation.screen.home.favorite
 
 import androidx.lifecycle.ViewModel
 import compose.base.app.domain.usecase.LoginUseCase
@@ -8,35 +8,35 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-data class TrendingUiState(
+data class FavoriteUiState(
     val isLoading: Boolean = false,
     val userName: String = "",
     val error: String = "",
     val navigateToHome: Boolean = false,
 )
 
-sealed class TrendingUiEvent {
+sealed class FavoriteUiEvent {
 
-    data class OnUserNameChange(val name: String) : TrendingUiEvent()
-    object OnSubmit : TrendingUiEvent()
+    data class OnUserNameChange(val name: String) : FavoriteUiEvent()
+    object OnSubmit : FavoriteUiEvent()
 }
 
 @HiltViewModel
-class TrendingViewModel @Inject constructor(private val trendingUseCase: LoginUseCase) :
+class FavoriteViewModel @Inject constructor(private val favoriteUseCase: LoginUseCase) :
     ViewModel() {
 
-    private var _trendingUiState = MutableStateFlow(TrendingUiState())
-    val uiState: StateFlow<TrendingUiState>
-        get() = _trendingUiState
+    private var _favoriteUiState = MutableStateFlow(FavoriteUiState())
+    val uiState: StateFlow<FavoriteUiState>
+        get() = _favoriteUiState
 
-    fun handleEvent(event: TrendingUiEvent) {
-        if (!_trendingUiState.value.isLoading) {
+    fun handleEvent(event: FavoriteUiEvent) {
+        if (!_favoriteUiState.value.isLoading) {
             when (event) {
-                is TrendingUiEvent.OnUserNameChange -> _trendingUiState.update { currentState ->
+                is FavoriteUiEvent.OnUserNameChange -> _favoriteUiState.update { currentState ->
                     currentState.copy(userName = event.name)
                 }
 
-                TrendingUiEvent.OnSubmit -> _trendingUiState.update { currentState ->
+                FavoriteUiEvent.OnSubmit -> _favoriteUiState.update { currentState ->
                     currentState.copy(navigateToHome = true)
                 }
             }
@@ -44,7 +44,7 @@ class TrendingViewModel @Inject constructor(private val trendingUseCase: LoginUs
     }
 
     fun onScreenFinish() {
-        _trendingUiState.update { currentState ->
+        _favoriteUiState.update { currentState ->
             currentState.copy(navigateToHome = false)
         }
     }

@@ -1,4 +1,4 @@
-package compose.base.app.presentation.screen.home.discover
+package compose.base.app.presentation.screen.home.trending
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -15,16 +15,16 @@ import compose.base.app.presentation.ui.theme.CineTheme
 
 @ExperimentalMaterial3Api
 @Composable
-fun DiscoverRoute(
+fun TrendingRoute(
     modifier: Modifier = Modifier,
-    viewModel: DiscoverViewModel = hiltViewModel(),
+    viewModel: TrendingViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(uiState.navigateToHome) {
 
     }
     if (rememberLifecycleEvent() == Lifecycle.Event.ON_STOP) viewModel.onScreenFinish()
-    DiscoverScreen(
+    TrendingScreen(
         modifier = modifier,
         uiState = uiState,
         uiEvent = viewModel::handleEvent,
@@ -33,10 +33,10 @@ fun DiscoverRoute(
 
 @ExperimentalMaterial3Api
 @Composable
-fun DiscoverScreen(
+fun TrendingScreen(
     modifier: Modifier = Modifier,
-    uiState: DiscoverUiState,
-    uiEvent: (DiscoverUiEvent) -> Unit,
+    uiState: TrendingUiState,
+    uiEvent: (TrendingUiEvent) -> Unit,
 ) {
     Scaffold {
         it
@@ -47,8 +47,8 @@ fun DiscoverScreen(
 @ExperimentalMaterial3Api
 @Preview
 @Composable
-fun DiscoverScreenPreview() {
+fun TrendingScreenPreview() {
     CineTheme {
-        DiscoverScreen(uiState = DiscoverUiState(), uiEvent = {})
+        TrendingScreen(uiState = TrendingUiState(), uiEvent = {})
     }
 }
